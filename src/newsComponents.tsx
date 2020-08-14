@@ -9,17 +9,35 @@ interface HeadlineProps {
 }
 
 export const HeadLines: React.FC<HeadlineProps> = (props) => {
-  throw Error("not implemented");
+  const dateObj = new Date(props.date);
+  return (
+    <div>
+      <div>
+        <a href={props.url}>{props.newsTitle}</a>
+      </div>
+      <div>
+        <div>{`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`}</div>
+        <div>{props.source}</div>
+      </div>
+    </div>
+  );
 };
 
 interface ContentProps {
-  isActive: boolean;
+  isHidden: boolean;
 }
 
 interface DropDownProps {
   onSourceChanged: (source: Source) => void;
   sources: Source[];
 }
-export const SourceDropDown: React.FC<DropDownProps> = (props) => {
-  throw Error("not implemented");
-};
+export const SourceDropDown: React.FC<DropDownProps> = (props) => (
+  <div>
+    <div>{props.sources[0].name}</div>
+    <ul>
+      {props.sources.map((source, i) => (
+        <li key={i}>{source.name}</li>
+      ))}
+    </ul>
+  </div>
+);
