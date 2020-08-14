@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+![screenshot](https://git-repo-img.s3.eu-west-2.amazonaws.com/tech-test-news.png)
+
 ## tech test news
 
 This is a simple news application that uses the news api to gather headlines and display them all together. install packages by running `yarn install` and then start the project by running `yarn start`.
