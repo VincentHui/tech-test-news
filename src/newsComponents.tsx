@@ -8,17 +8,20 @@ interface HeadlineProps {
   url: string;
 }
 
-export const HeadLines: React.FC<HeadlineProps> = (props) => (
-  <div>
+export const HeadLines: React.FC<HeadlineProps> = (props) => {
+  const dateObj = new Date(props.date);
+  return (
     <div>
-      <a href={props.url}>{props.newsTitle}</a>
+      <div>
+        <a href={props.url}>{props.newsTitle}</a>
+      </div>
+      <div>
+        <div>{`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`}</div>
+        <div>{props.source}</div>
+      </div>
     </div>
-    <div>
-      <div>{props.date}</div>
-      <div>{props.source}</div>
-    </div>
-  </div>
-);
+  );
+};
 
 interface ContentProps {
   isHidden: boolean;
