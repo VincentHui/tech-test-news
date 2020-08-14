@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Source } from "./newsGetter";
+import styled from "styled-components";
 
 interface HeadlineProps {
   newsTitle: string;
@@ -26,7 +27,9 @@ export const HeadLines: React.FC<HeadlineProps> = (props) => {
 interface ContentProps {
   isHidden: boolean;
 }
-
+const DropDownContent = styled.ul<ContentProps>`
+  display: ${(props) => (!props.isHidden ? "block" : "none")};
+`;
 interface DropDownProps {
   onSourceChanged: (source: Source) => void;
   sources: Source[];
@@ -46,7 +49,7 @@ export const SourceDropDown: React.FC<DropDownProps> = (props) => {
       >
         {dropState.focusedSource.name}
       </div>
-      <ul>
+      <DropDownContent isHidden={!dropState.focused}>
         {props.sources.map((source, i) => (
           <li
             onClick={() => {
@@ -62,7 +65,7 @@ export const SourceDropDown: React.FC<DropDownProps> = (props) => {
             {source.name}
           </li>
         ))}
-      </ul>
+      </DropDownContent>
     </div>
   );
 };
