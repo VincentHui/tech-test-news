@@ -16,17 +16,18 @@ const NewsFixture = {
     },
   ],
 };
+const SourcesFixture = {
+  sources: [
+    {
+      id: "test-news",
+      name: "test News",
+    },
+  ],
+};
 
 const server = setupServer(
   rest.get("https://newsapi.org/v2/sources", (req, res, ctx) => {
-    return res(
-      ctx.json([
-        {
-          id: "test-news",
-          name: "test News",
-        },
-      ])
-    );
+    return res(ctx.json(SourcesFixture));
   }),
   rest.get("https://newsapi.org/v2/top-headlines", (req, res, ctx) => {
     return res(ctx.json(NewsFixture));
