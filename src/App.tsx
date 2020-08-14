@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Source, Article, GetNews, GetSources } from "./newsGetter";
-import { SourceDropDown } from "./newsComponents";
+import { SourceDropDown, HeadLines } from "./newsComponents";
 const defaultSource = { id: "", name: "All Sources" };
 
 function Widget() {
@@ -32,6 +32,15 @@ function Widget() {
           sources={[defaultSource].concat(sourceState.sources)}
           onSourceChanged={changeSource}
         />
+        {newsState.articles.map((article) => (
+          <HeadLines
+            url={article.url}
+            key={article.title}
+            date={article.publishedAt}
+            source={article.source.name}
+            newsTitle={article.title}
+          />
+        ))}
       </div>
       <button>SHOW MORE</button>
     </section>
