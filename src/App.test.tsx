@@ -18,8 +18,8 @@ const NewsFixture = {
 test("get sources", () => {
   expect(GetSources()).resolves.toEqual([
     {
-      id: "abc-news",
-      name: "ABC News",
+      id: "test-news",
+      name: "test News",
     },
   ]);
 });
