@@ -2,6 +2,8 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { GetSources, GetNews } from "./newsGetter";
 import { HeadLines, SourceDropDown } from "./newsComponents";
+import { rest } from "msw";
+import { setupServer } from "msw/node";
 
 const NewsFixture = {
   totalResults: 10,
@@ -14,12 +16,32 @@ const NewsFixture = {
     },
   ],
 };
+const SourcesFixture = {
+  sources: [
+    {
+      id: "test-news",
+      name: "test News",
+    },
+  ],
+};
+
+const server = setupServer(
+  rest.get("https://newsapi.org/v2/sources", (req, res, ctx) => {
+    return res(ctx.json(SourcesFixture));
+  }),
+  rest.get("https://newsapi.org/v2/top-headlines", (req, res, ctx) => {
+    return res(ctx.json(NewsFixture));
+  })
+);
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 test("get sources", () => {
   expect(GetSources()).resolves.toEqual([
     {
-      id: "abc-news",
-      name: "ABC News",
+      id: "test-news",
+      name: "test News",
     },
   ]);
 });
