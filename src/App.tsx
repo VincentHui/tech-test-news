@@ -33,6 +33,7 @@ function Widget() {
           onSourceChanged={changeSource}
         />
       </div>
+      <button>SHOW MORE</button>
     </section>
   );
 }
