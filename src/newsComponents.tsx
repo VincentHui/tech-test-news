@@ -8,19 +8,42 @@ interface HeadlineProps {
   source: string;
   url: string;
 }
+const HeadlineRow = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
+const Item = styled.div`
+  margin-right: 20px;
+  font-size: small;
+`;
+
+const Link = styled.a`
+  text-decoration: none;
+  color: black;
+  font-size: medium;
+`;
+
+const Title = styled.h3`
+  margin-bottom: 10px;
+  margin-top: 0px;
+`;
+const HeadlineWrapper = styled.div`
+  margin-bottom: 15px;
+  margin-top: 15px;
+`;
 export const HeadLines: React.FC<HeadlineProps> = (props) => {
   const dateObj = new Date(props.date);
   return (
-    <div>
-      <div>
-        <a href={props.url}>{props.newsTitle}</a>
-      </div>
-      <div>
-        <div>{`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`}</div>
-        <div>{props.source}</div>
-      </div>
-    </div>
+    <HeadlineWrapper>
+      <Title>
+        <Link href={props.url}>{props.newsTitle}</Link>
+      </Title>
+      <HeadlineRow>
+        <Item>{`${dateObj.getDay()}/${dateObj.getMonth()}/${dateObj.getFullYear()}`}</Item>
+        <Item>{props.source}</Item>
+      </HeadlineRow>
+    </HeadlineWrapper>
   );
 };
 
