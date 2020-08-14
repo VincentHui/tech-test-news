@@ -17,8 +17,12 @@ function Widget() {
     });
   }, []);
 
-
-};
+  const changeSource = (source: Source) => {
+    GetNews(5, 1, source.id).then((data) => {
+      setNews({ currentPage: 1, articles: data.articles });
+      setFocusedSource({ source });
+    });
+  };
 
   return (
     <section>
@@ -26,7 +30,7 @@ function Widget() {
         <h1>News</h1>
         <SourceDropDown
           sources={[defaultSource].concat(sourceState.sources)}
-          onSourceChanged={() => {}}
+          onSourceChanged={changeSource}
         />
       </div>
     </section>
