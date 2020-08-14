@@ -21,6 +21,13 @@ const TopRow = styled.div`
   align-items: center;
 `;
 
+const StyledButton = styled.button`
+  border: 3px solid rgba(50, 50, 50, 1);
+  padding: 10px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+`;
+
 function Widget() {
   const [newsState, setNews] = useState({
     currentPage: 1,
@@ -71,7 +78,7 @@ function Widget() {
         />
       ))}
 
-      <button onClick={showMore}>SHOW MORE</button>
+      <StyledButton onClick={showMore}>SHOW MORE</StyledButton>
     </WidgetSection>
   );
 }
