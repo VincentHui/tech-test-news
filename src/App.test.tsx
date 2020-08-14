@@ -1,13 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import App from "./App";
 import { GetSources, GetNews } from "./newsGetter";
-
-test("renders learn react link", () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+import { HeadLines, SourceDropDown } from "./newsComponents";
 
 const NewsFixture = {
   totalResults: 10,
@@ -32,4 +26,36 @@ test("get sources", () => {
 
 test("get news", () => {
   expect(GetNews()).resolves.toEqual(NewsFixture);
+});
+
+test("renders headlines", () => {
+  const { getByText } = render(
+    <HeadLines
+      url="#"
+      source="test_source"
+      date="2020-08-14T12:37:32.5125702Z"
+      newsTitle="test_title"
+    />
+  );
+  const title = getByText(/test_title/i);
+  const source = getByText(/test_source/i);
+  const date = getByText("5/7/2020");
+  expect(title).toBeInTheDocument();
+  expect(source).toBeInTheDocument();
+  expect(date).toBeInTheDocument();
+});
+
+test("source dropdown", () => {
+  const { getAllByText } = render(
+    <SourceDropDown
+      onSourceChanged={() => {}}
+      sources={[
+        { name: "testItem1", id: "testid1" },
+        { name: "testItem2", id: "testid2" },
+      ]}
+    />
+  );
+  const items = getAllByText(/testItem/i);
+  //including title
+  expect(items.length).toEqual(3);
 });
