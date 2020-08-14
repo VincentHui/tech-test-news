@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Source, Article, GetNews, GetSources } from "./newsGetter";
 import { SourceDropDown, HeadLines } from "./newsComponents";
+import styled from "styled-components";
+
 const defaultSource = { id: "", name: "All Sources" };
 
+const WidgetSection = styled.section`
+  background-color: rgba(240, 240, 240, 1);
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+`;
 function Widget() {
   const [newsState, setNews] = useState({
     currentPage: 1,
@@ -35,7 +45,7 @@ function Widget() {
   };
 
   return (
-    <section>
+    <WidgetSection>
       <div>
         <h1>News</h1>
         <SourceDropDown
@@ -53,7 +63,7 @@ function Widget() {
         ))}
       </div>
       <button onClick={showMore}>SHOW MORE</button>
-    </section>
+    </WidgetSection>
   );
 }
 
