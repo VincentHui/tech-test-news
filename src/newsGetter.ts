@@ -20,9 +20,12 @@ export const GetNews = async (
   pageSize: number = 5,
   page: number = 1,
   source: string = ""
-): Promise<NewsData> => {
-  throw Error("not implemented");
-};
+): Promise<NewsData> =>
+  fetch(
+    `${headlinesURL}?language=en&sources=${source}&pageSize=${pageSize}&page=${page}&apiKey=${apiKey}`
+  )
+    .then((response) => response.json())
+    .then((data) => data);
 
 const sourceURL = "https://newsapi.org/v2/sources";
 export const GetSources = async (): Promise<Source[]> => {
