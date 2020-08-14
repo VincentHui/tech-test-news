@@ -24,6 +24,16 @@ function Widget() {
     });
   };
 
+  const showMore = () => {
+    const newPage = newsState.currentPage + 1;
+    GetNews(5, newPage, focused.source.id).then((data) => {
+      setNews({
+        currentPage: newPage,
+        articles: newsState.articles.concat(data.articles),
+      });
+    });
+  };
+
   return (
     <section>
       <div>
@@ -42,7 +52,7 @@ function Widget() {
           />
         ))}
       </div>
-      <button>SHOW MORE</button>
+      <button onClick={showMore}>SHOW MORE</button>
     </section>
   );
 }
