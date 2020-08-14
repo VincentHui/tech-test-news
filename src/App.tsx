@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import { Source, Article } from "./newsGetter";
 
 function Widget() {
-  return <div></div>;
+  const [newsState, setNews] = useState({
+    currentPage: 1,
+    articles: [] as Article[],
+  });
+  const [sourceState, setSources] = useState({ sources: [] as Source[] });
+  return <section></section>;
 }
 
 export default Widget;
