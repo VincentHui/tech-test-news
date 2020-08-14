@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Source } from "./newsGetter";
 
 interface HeadlineProps {
@@ -31,13 +31,38 @@ interface DropDownProps {
   onSourceChanged: (source: Source) => void;
   sources: Source[];
 }
-export const SourceDropDown: React.FC<DropDownProps> = (props) => (
-  <div>
-    <div>{props.sources[0].name}</div>
-    <ul>
-      {props.sources.map((source, i) => (
-        <li key={i}>{source.name}</li>
-      ))}
-    </ul>
-  </div>
-);
+export const SourceDropDown: React.FC<DropDownProps> = (props) => {
+  const [dropState, setDropState] = useState({
+    focused: false,
+    focusedSource: props.sources[0],
+  });
+  return (
+    <div>
+      <div
+        onClick={() =>
+          setDropState({ ...dropState, focused: !dropState.focused })
+        }
+        onBlur={() => setDropState({ ...dropState, focused: false })}
+      >
+        {dropState.focusedSource.name}
+      </div>
+      <ul>
+        {props.sources.map((source, i) => (
+          <li
+            onClick={() => {
+              setDropState({
+                ...dropState,
+                focused: false,
+                focusedSource: source,
+              });
+              props.onSourceChanged(source);
+            }}
+            key={i}
+          >
+            {source.name}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
