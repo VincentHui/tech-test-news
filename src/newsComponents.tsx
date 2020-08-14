@@ -8,12 +8,20 @@ interface HeadlineProps {
   url: string;
 }
 
-export const HeadLines: React.FC<HeadlineProps> = (props) => {
-  throw Error("not implemented");
-};
+export const HeadLines: React.FC<HeadlineProps> = (props) => (
+  <div>
+    <div>
+      <a href={props.url}>{props.newsTitle}</a>
+    </div>
+    <div>
+      <div>{props.date}</div>
+      <div>{props.source}</div>
+    </div>
+  </div>
+);
 
 interface ContentProps {
-  isActive: boolean;
+  isHidden: boolean;
 }
 
 interface DropDownProps {
