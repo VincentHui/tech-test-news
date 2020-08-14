@@ -31,6 +31,13 @@ interface DropDownProps {
   onSourceChanged: (source: Source) => void;
   sources: Source[];
 }
-export const SourceDropDown: React.FC<DropDownProps> = (props) => {
-  throw Error("not implemented");
-};
+export const SourceDropDown: React.FC<DropDownProps> = (props) => (
+  <div>
+    <div>{props.sources[0].name}</div>
+    <ul>
+      {props.sources.map((source, i) => (
+        <li key={i}>{source.name}</li>
+      ))}
+    </ul>
+  </div>
+);
