@@ -13,6 +13,14 @@ const WidgetSection = styled.section`
   margin: auto;
   padding: 20px;
 `;
+
+const TopRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 function Widget() {
   const [newsState, setNews] = useState({
     currentPage: 1,
@@ -46,22 +54,23 @@ function Widget() {
 
   return (
     <WidgetSection>
-      <div>
+      <TopRow>
         <h1>News</h1>
         <SourceDropDown
           sources={[defaultSource].concat(sourceState.sources)}
           onSourceChanged={changeSource}
         />
-        {newsState.articles.map((article) => (
-          <HeadLines
-            url={article.url}
-            key={article.title}
-            date={article.publishedAt}
-            source={article.source.name}
-            newsTitle={article.title}
-          />
-        ))}
-      </div>
+      </TopRow>
+      {newsState.articles.map((article) => (
+        <HeadLines
+          url={article.url}
+          key={article.title}
+          date={article.publishedAt}
+          source={article.source.name}
+          newsTitle={article.title}
+        />
+      ))}
+
       <button onClick={showMore}>SHOW MORE</button>
     </WidgetSection>
   );
