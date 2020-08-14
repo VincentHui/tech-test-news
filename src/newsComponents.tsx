@@ -52,6 +52,17 @@ interface ContentProps {
 }
 const DropDownContent = styled.ul<ContentProps>`
   display: ${(props) => (!props.isHidden ? "block" : "none")};
+  position: absolute;
+  list-style: none;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  min-width: 200px;
+  max-height: 400px;
+  padding: 10px;
+  margin: 0;
+  overflow-y: scroll;
+  cursor: pointer;
+  background-color: rgba(240, 240, 240, 1);
 `;
 const DropDownTitle = styled.div`
   width: 200px;
