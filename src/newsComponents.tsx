@@ -53,6 +53,12 @@ interface ContentProps {
 const DropDownContent = styled.ul<ContentProps>`
   display: ${(props) => (!props.isHidden ? "block" : "none")};
 `;
+const DropDownTitle = styled.div`
+  width: 200px;
+  padding: 10px;
+  border: 3px solid rgba(50, 50, 50, 1);
+  background-color: rgba(240, 240, 240, 1);
+`;
 interface DropDownProps {
   onSourceChanged: (source: Source) => void;
   sources: Source[];
@@ -64,14 +70,14 @@ export const SourceDropDown: React.FC<DropDownProps> = (props) => {
   });
   return (
     <div>
-      <div
+      <DropDownTitle
         onClick={() =>
           setDropState({ ...dropState, focused: !dropState.focused })
         }
         onBlur={() => setDropState({ ...dropState, focused: false })}
       >
         {dropState.focusedSource.name}
-      </div>
+      </DropDownTitle>
       <DropDownContent isHidden={!dropState.focused}>
         {props.sources.map((source, i) => (
           <li
