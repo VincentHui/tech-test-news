@@ -9,12 +9,17 @@ function Widget() {
     articles: [] as Article[],
   });
   const [sourceState, setSources] = useState({ sources: [] as Source[] });
+  const [focused, setFocusedSource] = useState({ source: defaultSource });
   useEffect(() => {
     Promise.all([GetNews(5, 1), GetSources()]).then(([news, sources]) => {
       setNews({ currentPage: 1, articles: news.articles });
       setSources({ sources });
     });
   }, []);
+
+
+};
+
   return (
     <section>
       <div>
